@@ -213,3 +213,39 @@ The following problems are distinct but can appear in in various combinations in
 <img src = 'https://socviz.co/assets/ch-01-democracy-voeten-version-2.png' style="width:1000px;height:500px;" class="center">
 <figcaption>Voeten's response to NYT graph-from Data Visualization by Healy</figcaption>
 </figure>
+
+## One for the finance bros
+
+<figure>
+<img src = 'https://socviz.co/dataviz-pdfl_files/figure-html4/fred1-1.png' style="width:1000px;height:500px;" class="center">
+<figcaption>Liz Ann Sonders, Chief Investment Strategist with Charles Schwab, Inc,-from Data Visualization by Healy</figcaption>
+</figure>
+
+## What if it was shown this way
+
+:::{.columns}
+
+:::{.column}
+<figure>
+<img src = 'https://socviz.co/dataviz-pdfl_files/figure-html4/fred2-2.png' style="width:800px;height:500px;" class="center">
+<figcaption>Healy's examples for possible manipulations from Data Visualization by Healy </figcaption>
+</figure>
+
+:::
+
+:::{.column}
+<figure>
+<img src = 'https://socviz.co/dataviz-pdfl_files/figure-html4/fred2-1.png' style="width:800px;height:500px;" class="center">
+<figcaption>Healy's examples for possible manipulations from Data Visualization by Healy</figcaption>
+</figure>
+
+:::
+
+:::
+
+## How to address such issues - Healy's Alternative
+
+<figure>
+<img src = 'https://socviz.co/dataviz-pdfl_files/figure-html4/fred5-1.png' style="width:1000px;height:500px;" class="center">
+<figcaption>Healy's Alternative to the index vs money base chart from Data Visualization by Healy</figcaption>
+</figure>
