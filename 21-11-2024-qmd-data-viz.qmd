@@ -5,6 +5,8 @@ author: "Ayush Patel"
 format: 
   revealjs:
     embed-resources: true
+    width: 1200
+    slide-number: c
 editor: visual
 ---
 
@@ -28,4 +30,186 @@ I think the two must read books on data viz are [Data Visualization by Kieran He
 - Where and how to learn more
 :::
 
-## 
+## Can you tell me something?
+
+Following is the number of time I day dream about food, recorded over two weeks:
+
+
+```{r}
+#| echo: false
+
+a <- rnorm(n = 14,mean = 25,sd = 3)
+
+round(a)
+```
+Here is the number of times I tried to complete this presentation over the same period of time:
+
+```{r}
+#| echo: false
+
+b <- round(a -(seq(0.05,by = 0.1, length.out = 14) - rnorm(n = 14,mean = 0,5)))
+b
+```
+
+
+**It is not easy and intuitive to look at number and say something about it. Even if summary stats are provided. Let us look at this more closely.**
+
+## You all know of the quartet - Anscombe and friends
+
+:::{.columns}
+
+:::{.column}
+
+```{r}
+#|echo: false
+
+anscombe
+```
+
+:::
+
+:::{.column}
+
+```{r}
+#| echo: false
+
+dplyr::summarise(
+  anscombe,
+  dplyr::across(
+    dplyr::contains("y"),
+    list(
+      mean = ~ mean(.x),
+      sd = ~ sd(.x)
+    )
+  )
+)|>tidyr::pivot_longer(cols = dplyr::everything(),
+                       names_sep = "_",names_to = c("variable","measure"))|>
+  tidyr::pivot_wider(names_from = measure,values_from = value)
+```
+
+Corr x1, y1: `r cor(anscombe$x1,anscombe$y1)`  
+Corr x1, y1: `r cor(anscombe$x2,anscombe$y2)`  
+Corr x1, y1: `r cor(anscombe$x3,anscombe$y3)`  
+Corr x1, y1: `r cor(anscombe$x4,anscombe$y4)`  
+:::
+
+:::
+
+
+## Things are not always as they seem
+
+<figure>
+<img src = 'https://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-anscombe-1.png' style="width:800px;height:500px;" class="center">
+<figcaption>Anscombe's quartet-from Data Visualization by Healy</figcaption>
+</figure>
+
+
+## Clearly, *looking* at data helps
+
+:::{.incremental}
+
+- Helps the build intuitive understanding of the data
+- Identify patterns, sometimes expected, sometimes unexpected
+- Convey a lot of information in a concise an accessible and memorable manner
+- All the points are true for the people generating as well as consuming a visualization
+
+:::
+
+## Can we identify an effective vs a bad visualization
+
+:::{.columns}
+
+:::{.column}
+<figure>
+<img src = 'https://socviz.co/assets/ch-01-minard.png' style="width:800px;height:500px;" class="center">
+<figcaption>Napolean's retreat from Russia by Minard-from Data Visualization by Healy</figcaption>
+</figure>
+
+:::
+
+:::{.column}
+<figure>
+<img src = 'https://socviz.co/assets/ch-01-holmes-monstrous-only.png' style="width:800px;height:500px;" class="center">
+<figcaption>`Monstrous Costs’ by Nigel Holmes-from Data Visualization by Healy</figcaption>
+</figure>
+
+:::
+
+:::
+
+
+## Can we identify an effective vs a bad visualization
+
+:::{.columns}
+
+:::{.column}
+<figure>
+<img src = 'https://cararthompson.github.io/data-labs-more-than-pretty-graphs/slides/dataviz-workshop_files/figure-revealjs/unnamed-chunk-10-1.png' style="width:800px;height:500px;" class="center">
+<figcaption>Rainfall in Glasgow and Edinbrugh-from Cara Thompson's More than pretty graphs</figcaption>
+</figure>
+
+:::
+
+:::{.column}
+<figure>
+<img src = 'https://cararthompson.github.io/data-labs-more-than-pretty-graphs/slides/dataviz-workshop_files/figure-revealjs/unnamed-chunk-62-1.png' style="width:800px;height:500px;" class="center">
+<figcaption>Rainfall in Glasgow and Edinbrugh-from Cara Thompson's More than pretty graphs</figcaption>
+</figure>
+
+:::
+
+:::
+
+## Tufte on Visualization
+
+*"Graphical excellence is the well-designed presentation of interesting data—a matter of substance, of statistics, and of design … [It] consists of complex ideas communicated with clarity, precision, and efficiency. … [It] is that which gives to the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space … [It] is nearly always multivariate … And graphical excellence requires telling the truth about the data. (Tufte, 1983, p. 51)."*
+
+## Markers of a good visualization
+
+:::{.incremental}
+- Not just about how it looks, though this makes the graph memorable
+- Depends who is looking at it
+- Why are thy looking at it - what is expected out of the chart
+- **Essentially, you need both, good taste as well as an understanding of how human visual perception works. The latter can be learned with practice and in relatively less time than the first. Good taste needs to be developed and it takes time.**
+:::
+
+
+## A discussion on this figure
+
+<figure>
+<img src = 'https://socviz.co/assets/ch-01-democracy-nyt-version.png' style="width:1000px;height:500px;" class="center">
+<figcaption>reference to NYT graph-from Data Visualization by Healy</figcaption>
+</figure>
+
+## Identifying features of bad visualizations
+
+The following problems are distinct but can appear in in various combinations in a given figure.
+
+:::{.incremental}
+- Strictly Aesthetic
+- Substantive - the data presented is somehow off
+- Perceptual
+:::
+
+## Back to Democracy - what are the good things?
+
+<figure>
+<img src = 'https://socviz.co/assets/ch-01-democracy-nyt-version.png' style="width:1000px;height:500px;" class="center">
+<figcaption>reference to NYT graph-from Data Visualization by Healy</figcaption>
+</figure>
+
+## What if I tell you
+
+:::{.incremental}
+- These are are not the responses from a longitudinal survey
+- Actually, it is the same question asked to people born in different decades, i.e., different age groups.
+- Cherry on top it was not a binary question
+- Identifying substantive problems require understanding of underlying data of a chart, being observant of any transformations and consequent effects, etc..
+:::
+
+## A good samaritan
+
+<figure>
+<img src = 'https://socviz.co/assets/ch-01-democracy-voeten-version-2.png' style="width:1000px;height:500px;" class="center">
+<figcaption>Voeten's response to NYT graph-from Data Visualization by Healy</figcaption>
+</figure>
