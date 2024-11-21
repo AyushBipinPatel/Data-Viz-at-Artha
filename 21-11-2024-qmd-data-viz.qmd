@@ -1,0 +1,31 @@
+---
+title: "Data Visualization"
+subtitle: "A tour of favourite hits"
+author: "Ayush Patel"
+format: 
+  revealjs:
+    embed-resources: true
+editor: visual
+---
+
+## Hello!
+
+:::{.incremental}
+- I am Ayush.
+- I work at the intersection of data, policy and development.
+- I sometimes teach data analysis skills using R to those who will suffer me.
+:::
+
+## What is the talk about?
+
+I think the two must read books on data viz are [Data Visualization by Kieran Healy](https://socviz.co/) and [Fundamentals of Data Visualization by Claus Wilke](https://clauswilke.com/dataviz/).
+
+:::{.incremental}
+- I will walk through some interesting examples from these books.
+- We will look at motivations for data visualization
+- Markers of good and bad data visualization
+- Some common mistakes to avoid
+- Where and how to learn more
+:::
+
+## 
