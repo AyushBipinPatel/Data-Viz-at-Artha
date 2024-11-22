@@ -7,33 +7,33 @@ format:
     embed-resources: true
     width: 1200
     slide-number: c
+    theme: [serif, theme.scss]
 editor: visual
 ---
 
 ## Hello!
 
-:::{.incremental}
-- I am Ayush.
-- I work at the intersection of data, policy and development.
-- I sometimes teach data analysis skills using R to those who will suffer me.
+::: incremental
+-   I am Ayush.
+-   I work at the intersection of data, policy and development.
+-   I sometimes teach data analysis skills using R to those who will suffer me.
 :::
 
 ## What is the talk about?
 
 I think the two must read books on data viz are [Data Visualization by Kieran Healy](https://socviz.co/) and [Fundamentals of Data Visualization by Claus Wilke](https://clauswilke.com/dataviz/).
 
-:::{.incremental}
-- I will walk through some interesting examples from these books.
-- We will look at motivations for data visualization
-- Markers of good and bad data visualization
-- Some common mistakes to avoid
-- Where and how to learn more
+::: incremental
+-   I will walk through some interesting examples from these books.
+-   We will look at motivations for data visualization
+-   Markers of good and bad data visualization
+-   Some common mistakes to avoid
+-   Where and how to learn more
 :::
 
 ## Can you tell me something?
 
 Following is the number of time I day dream about food, recorded over two weeks:
-
 
 ```{r}
 #| echo: false
@@ -42,6 +42,7 @@ a <- rnorm(n = 14,mean = 25,sd = 3)
 
 round(a)
 ```
+
 Here is the number of times I tried to complete this presentation over the same period of time:
 
 ```{r}
@@ -51,25 +52,20 @@ b <- round(a -(seq(0.05,by = 0.1, length.out = 14) - rnorm(n = 14,mean = 0,5)))
 b
 ```
 
-
 **It is not easy and intuitive to look at number and say something about it. Even if summary stats are provided. Let us look at this more closely.**
 
 ## You all know of the quartet - Anscombe and friends
 
-:::{.columns}
-
-:::{.column}
-
+::::: columns
+::: column
 ```{r}
 #|echo: false
 
 anscombe
 ```
-
 :::
 
-:::{.column}
-
+::: column
 ```{r}
 #| echo: false
 
@@ -87,165 +83,407 @@ dplyr::summarise(
   tidyr::pivot_wider(names_from = measure,values_from = value)
 ```
 
-Corr x1, y1: `r cor(anscombe$x1,anscombe$y1)`  
-Corr x1, y1: `r cor(anscombe$x2,anscombe$y2)`  
-Corr x1, y1: `r cor(anscombe$x3,anscombe$y3)`  
-Corr x1, y1: `r cor(anscombe$x4,anscombe$y4)`  
+Corr x1, y1: `r cor(anscombe$x1,anscombe$y1)`\
+Corr x1, y1: `r cor(anscombe$x2,anscombe$y2)`\
+Corr x1, y1: `r cor(anscombe$x3,anscombe$y3)`\
+Corr x1, y1: `r cor(anscombe$x4,anscombe$y4)`
 :::
-
-:::
-
+:::::
 
 ## Things are not always as they seem
 
 <figure>
-<img src = 'https://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-anscombe-1.png' style="width:800px;height:500px;" class="center">
-<figcaption>Anscombe's quartet-from Data Visualization by Healy</figcaption>
-</figure>
 
+<img src="https://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-anscombe-1.png" class="center" style="width:800px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+Anscombe's quartet-from Data Visualization by Healy
+
+</figcaption>
+
+</figure>
 
 ## Clearly, *looking* at data helps
 
-:::{.incremental}
-
-- Helps the build intuitive understanding of the data
-- Identify patterns, sometimes expected, sometimes unexpected
-- Convey a lot of information in a concise an accessible and memorable manner
-- All the points are true for the people generating as well as consuming a visualization
-
+::: incremental
+-   Helps the build intuitive understanding of the data
+-   Identify patterns, sometimes expected, sometimes unexpected
+-   Convey a lot of information in a concise an accessible and memorable manner
+-   All the points are true for the people generating as well as consuming a visualization
 :::
 
 ## Can we identify an effective vs a bad visualization
 
-:::{.columns}
-
-:::{.column}
+::::: columns
+::: column
 <figure>
-<img src = 'https://socviz.co/assets/ch-01-minard.png' style="width:800px;height:500px;" class="center">
-<figcaption>Napolean's retreat from Russia by Minard-from Data Visualization by Healy</figcaption>
-</figure>
 
+<img src="https://socviz.co/assets/ch-01-minard.png" class="center" style="width:800px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+Napolean's retreat from Russia by Minard-from Data Visualization by Healy
+
+</figcaption>
+
+</figure>
 :::
 
-:::{.column}
+::: column
 <figure>
-<img src = 'https://socviz.co/assets/ch-01-holmes-monstrous-only.png' style="width:800px;height:500px;" class="center">
-<figcaption>`Monstrous Costs’ by Nigel Holmes-from Data Visualization by Healy</figcaption>
+
+<img src="https://socviz.co/assets/ch-01-holmes-monstrous-only.png" class="center" style="width:800px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+\`Monstrous Costs’ by Nigel Holmes-from Data Visualization by Healy
+
+</figcaption>
+
 </figure>
-
 :::
-
-:::
-
+:::::
 
 ## Can we identify an effective vs a bad visualization
 
-:::{.columns}
-
-:::{.column}
+::::: columns
+::: column
 <figure>
-<img src = 'https://cararthompson.github.io/data-labs-more-than-pretty-graphs/slides/dataviz-workshop_files/figure-revealjs/unnamed-chunk-10-1.png' style="width:800px;height:500px;" class="center">
-<figcaption>Rainfall in Glasgow and Edinbrugh-from Cara Thompson's More than pretty graphs</figcaption>
-</figure>
 
+<img src="https://cararthompson.github.io/data-labs-more-than-pretty-graphs/slides/dataviz-workshop_files/figure-revealjs/unnamed-chunk-10-1.png" class="center" style="width:800px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+Rainfall in Glasgow and Edinbrugh-from Cara Thompson's More than pretty graphs
+
+</figcaption>
+
+</figure>
 :::
 
-:::{.column}
+::: column
 <figure>
-<img src = 'https://cararthompson.github.io/data-labs-more-than-pretty-graphs/slides/dataviz-workshop_files/figure-revealjs/unnamed-chunk-62-1.png' style="width:800px;height:500px;" class="center">
-<figcaption>Rainfall in Glasgow and Edinbrugh-from Cara Thompson's More than pretty graphs</figcaption>
+
+<img src="https://cararthompson.github.io/data-labs-more-than-pretty-graphs/slides/dataviz-workshop_files/figure-revealjs/unnamed-chunk-62-1.png" class="center" style="width:800px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+Rainfall in Glasgow and Edinbrugh-from Cara Thompson's More than pretty graphs
+
+</figcaption>
+
 </figure>
-
 :::
-
-:::
+:::::
 
 ## Tufte on Visualization
 
-*"Graphical excellence is the well-designed presentation of interesting data—a matter of substance, of statistics, and of design … [It] consists of complex ideas communicated with clarity, precision, and efficiency. … [It] is that which gives to the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space … [It] is nearly always multivariate … And graphical excellence requires telling the truth about the data. (Tufte, 1983, p. 51)."*
+*"Graphical excellence is the well-designed presentation of interesting data—a matter of substance, of statistics, and of design … \[It\] consists of complex ideas communicated with clarity, precision, and efficiency. … \[It\] is that which gives to the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space … \[It\] is nearly always multivariate … And graphical excellence requires telling the truth about the data. (Tufte, 1983, p. 51)."*
 
 ## Markers of a good visualization
 
-:::{.incremental}
-- Not just about how it looks, though this makes the graph memorable
-- Depends who is looking at it
-- Why are thy looking at it - what is expected out of the chart
-- **Essentially, you need both, good taste as well as an understanding of how human visual perception works. The latter can be learned with practice and in relatively less time than the first. Good taste needs to be developed and it takes time.**
+::: incremental
+-   Not just about how it looks, though this makes the graph memorable
+-   Depends who is looking at it
+-   Why are they looking at it - what is expected out of the chart
+-   **Essentially, you need both, good taste as well as an understanding of how human visual perception works. The latter can be learned with practice and in relatively less time than the first. Good taste needs to be developed and it takes time.**
 :::
-
 
 ## A discussion on this figure
 
 <figure>
-<img src = 'https://socviz.co/assets/ch-01-democracy-nyt-version.png' style="width:1000px;height:500px;" class="center">
-<figcaption>reference to NYT graph-from Data Visualization by Healy</figcaption>
+
+<img src="https://socviz.co/assets/ch-01-democracy-nyt-version.png" class="center" style="width:1000px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+reference to NYT graph-from Data Visualization by Healy
+
+</figcaption>
+
 </figure>
 
 ## Identifying features of bad visualizations
 
 The following problems are distinct but can appear in in various combinations in a given figure.
 
-:::{.incremental}
-- Strictly Aesthetic
-- Substantive - the data presented is somehow off
-- Perceptual
+::: incremental
+-   Strictly Aesthetic
+-   Substantive - the data presented is somehow off
+-   Perceptual
 :::
 
 ## Back to Democracy - what are the good things?
 
 <figure>
-<img src = 'https://socviz.co/assets/ch-01-democracy-nyt-version.png' style="width:1000px;height:500px;" class="center">
-<figcaption>reference to NYT graph-from Data Visualization by Healy</figcaption>
+
+<img src="https://socviz.co/assets/ch-01-democracy-nyt-version.png" class="center" style="width:1000px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+reference to NYT graph-from Data Visualization by Healy
+
+</figcaption>
+
 </figure>
 
 ## What if I tell you
 
-:::{.incremental}
-- These are are not the responses from a longitudinal survey
-- Actually, it is the same question asked to people born in different decades, i.e., different age groups.
-- Cherry on top it was not a binary question
-- Identifying substantive problems require understanding of underlying data of a chart, being observant of any transformations and consequent effects, etc..
+::: incremental
+-   These are are not the responses from a longitudinal survey
+-   Actually, it is the same question asked to people born in different decades, i.e., different age groups.
+-   Cherry on top it was not a binary question
+-   Identifying substantive problems require understanding of underlying data of a chart, being observant of any transformations and consequent effects, etc..
 :::
 
 ## A good samaritan
 
 <figure>
-<img src = 'https://socviz.co/assets/ch-01-democracy-voeten-version-2.png' style="width:1000px;height:500px;" class="center">
-<figcaption>Voeten's response to NYT graph-from Data Visualization by Healy</figcaption>
+
+<img src="https://socviz.co/assets/ch-01-democracy-voeten-version-2.png" class="center" style="width:1000px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+Voeten's response to NYT graph-from Data Visualization by Healy
+
+</figcaption>
+
 </figure>
 
 ## One for the finance bros
 
 <figure>
-<img src = 'https://socviz.co/dataviz-pdfl_files/figure-html4/fred1-1.png' style="width:1000px;height:500px;" class="center">
+
+<img src="https://socviz.co/dataviz-pdfl_files/figure-html4/fred1-1.png" class="center" style="width:1000px;height:500px;"/>
+
 <figcaption>Liz Ann Sonders, Chief Investment Strategist with Charles Schwab, Inc,-from Data Visualization by Healy</figcaption>
+
 </figure>
 
 ## What if it was shown this way
 
-:::{.columns}
-
-:::{.column}
+::::: columns
+::: column
 <figure>
-<img src = 'https://socviz.co/dataviz-pdfl_files/figure-html4/fred2-2.png' style="width:800px;height:500px;" class="center">
-<figcaption>Healy's examples for possible manipulations from Data Visualization by Healy </figcaption>
-</figure>
 
+<img src="https://socviz.co/dataviz-pdfl_files/figure-html4/fred2-2.png" class="center" style="width:800px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+Healy's examples for possible manipulations from Data Visualization by Healy
+
+</figcaption>
+
+</figure>
 :::
 
-:::{.column}
+::: column
 <figure>
-<img src = 'https://socviz.co/dataviz-pdfl_files/figure-html4/fred2-1.png' style="width:800px;height:500px;" class="center">
-<figcaption>Healy's examples for possible manipulations from Data Visualization by Healy</figcaption>
+
+<img src="https://socviz.co/dataviz-pdfl_files/figure-html4/fred2-1.png" class="center" style="width:800px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+Healy's examples for possible manipulations from Data Visualization by Healy
+
+</figcaption>
+
 </figure>
-
 :::
-
-:::
+:::::
 
 ## How to address such issues - Healy's Alternative
 
 <figure>
-<img src = 'https://socviz.co/dataviz-pdfl_files/figure-html4/fred5-1.png' style="width:1000px;height:500px;" class="center">
-<figcaption>Healy's Alternative to the index vs money base chart from Data Visualization by Healy</figcaption>
+
+<img src="https://socviz.co/dataviz-pdfl_files/figure-html4/fred5-1.png" class="center" style="width:1000px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+Healy's Alternative to the index vs money base chart from Data Visualization by Healy
+
+</figcaption>
+
 </figure>
+
+## Garden variety mistakes - Single variable distributions
+
+<figure>
+
+<img src="https://clauswilke.com/dataviz/visualizing_distributions_I_files/figure-html/titanic-ages-hist-grid-1.png" class="center" style="width:1000px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+Bin width example from Fundamentals of Data Visualization by Wilke
+
+</figcaption>
+
+</figure>
+
+## Garden variety mistakes - Single variable distributions
+
+<figure>
+
+<img src="https://clauswilke.com/dataviz/visualizing_distributions_I_files/figure-html/titanic-ages-dens-negative-1.png" class="center" style="width:1000px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+Incorrect data representation example from Fundamentals of Data Visualization by Wilke
+
+</figcaption>
+
+</figure>
+
+## Garden variety mistakes - two or more variable distributions
+
+::::: columns
+::: column
+<figure>
+
+<img src="https://clauswilke.com/dataviz/visualizing_distributions_I_files/figure-html/titanic-age-stacked-hist-1.png" class="center" style="width:800px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+Multiple Distribution common error from Fundamentals of Data Visualization by Wilke
+
+</figcaption>
+
+</figure>
+:::
+
+::: column
+<figure>
+
+<img src="https://clauswilke.com/dataviz/visualizing_distributions_I_files/figure-html/titanic-age-overlapping-hist-1.png" class="center" style="width:800px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+Multiple Distribution common error from Fundamentals of Data Visualization by Wilke
+
+</figcaption>
+
+</figure>
+:::
+:::::
+
+## Alternatives from Wilke
+
+**for multi variable distribution**
+
+<figure>
+
+<img src="https://clauswilke.com/dataviz/visualizing_distributions_I_files/figure-html/titanic-age-overlapping-dens-1.png" class="center" style="width:800px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+Alternatives for Multiple Distribution from Fundamentals of Data Visualization by Wilke
+
+</figcaption>
+
+</figure>
+
+## Alternatives from Wilke
+
+**for multi variable distribution**
+
+<figure>
+
+<img src="https://clauswilke.com/dataviz/visualizing_distributions_I_files/figure-html/titanic-age-fractional-dens-1.png" class="center" style="width:800px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+Alternatives for Multiple Distribution from Fundamentals of Data Visualization by Wilke
+
+</figcaption>
+
+</figure>
+
+## Alternatives from Wilke
+
+**for multi variable distribution**
+
+<figure>
+
+<img src="https://clauswilke.com/dataviz/visualizing_distributions_I_files/figure-html/titanic-age-pyramid-1.png" class="center" style="width:800px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+Alternatives for Multiple Distribution from Fundamentals of Data Visualization by Wilke
+
+</figcaption>
+
+</figure>
+
+## Alternatives from Wilke
+
+**for multi variable distribution**
+
+<figure>
+
+<img src="https://clauswilke.com/dataviz/visualizing_distributions_I_files/figure-html/butterfat-densitites-1.png" class="center" style="width:800px;height:500px;"/>
+
+<figcaption style="font-size:15px">
+
+Alternatives for Multiple Distribution from Fundamentals of Data Visualization by Wilke
+
+</figcaption>
+
+</figure>
+
+## Garden Variety mistake - Unordered Barcharts
+
+```{r}
+#| echo: false
+#| layout-nrow: 1
+#| fig-height: 8
+#| column: body
+
+tibble::tibble(
+  `Ice Cream Flavour` = c("Chocolate","cookiescream","Guava","Jamun"),
+  `Total Sale` = c(64,30,50,40))|>
+  ggplot2::ggplot()+
+  ggplot2::geom_col(ggplot2::aes(`Ice Cream Flavour`,`Total Sale`))+
+  ggplot2::theme_minimal()+
+  ggplot2::theme(
+    axis.text = ggplot2::element_text(size = 18),
+    plot.title = ggplot2::element_text(size = 25),
+    axis.title = ggplot2::element_text(size = 22),
+  )+
+  ggplot2::labs(
+    title = "Revenue by ice cream flavour",
+    x = NULL,
+    y = "Revenue in thousands(INR)"
+  )
+
+tibble::tibble(
+  `Ice Cream Flavour` = c("Chocolate","cookiescream","Guava","Jamun"),
+  `Total Sale` = c(64,30,50,40))|>
+  dplyr::mutate(
+    `Ice Cream Flavour` = forcats::fct_reorder(`Ice Cream Flavour`,`Total Sale`)
+  )|>
+  ggplot2::ggplot()+
+  ggplot2::geom_col(ggplot2::aes(`Ice Cream Flavour`,`Total Sale`))+
+  ggplot2::theme_minimal()+
+  ggplot2::theme(
+    axis.text = ggplot2::element_text(size = 18),
+    plot.title = ggplot2::element_text(size = 25),
+    axis.title = ggplot2::element_text(size = 22),
+  )+
+  ggplot2::labs(
+    title = "Revenue by ice cream flavour",
+    x = NULL,
+    y = "Revenue in thousands(INR)"
+  )
+```
+## Resources - 
+
+- [Edward Tufte](https://www.edwardtufte.com/)
+- [Kieran Healy](https://kieranhealy.org/)
+- [Claus Wilke](https://clauswilke.com/)
+- [Cedric Scherer](https://www.cedricscherer.com/)
+- [Tanya Shapiro](https://www.tanyashapiro.com/)
+- [Cara Thompson](https://www.cararthompson.com/)
+- [Nicola Rennie](https://nrennie.rbind.io/)
+
+## Thank you. {.center}
